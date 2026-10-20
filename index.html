@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Libertadores 2026 – Dashboard das semifinais</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js"></script>
+<style>
+:root{
+  --bg:#eef2f5; --card:#ffffff; --ink:#0b2a4a; --muted:#5b6f84; --line:#d5dde5;
+  --gold:#b8861f; --win:#1a7f4b; --chart1:#0b2a4a; --chart2:#b8861f;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0a1626; --card:#10223a; --ink:#e8eef5; --muted:#91a5ba; --line:#25405e;
+    --gold:#e0b04a; --win:#4ec88a; --chart1:#7fb0e6; --chart2:#e0b04a; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0a1626; --card:#10223a; --ink:#e8eef5; --muted:#91a5ba; --line:#25405e;
+  --gold:#e0b04a; --win:#4ec88a; --chart1:#7fb0e6; --chart2:#e0b04a; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;line-height:1.5;padding:24px 16px 48px}
+main{max-width:980px;margin:0 auto}
+h1{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;margin:0 0 4px;letter-spacing:-.02em}
+h2{font-size:1.15rem;font-weight:800;margin:36px 0 12px}
+.sub{color:var(--muted);margin:0 0 20px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+.kpi b{display:block;font-size:1.7rem;font-weight:800}
+.kpi small{color:var(--muted)}
+.bracket{display:grid;grid-template-columns:1fr 1fr 0.8fr;gap:16px;align-items:center}
+.tie{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.tie h3{margin:0 0 10px;font-size:.95rem;color:var(--muted);font-weight:600}
+.team{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:1.15rem;font-weight:600}
+.team:last-of-type{border-bottom:0}
+.team em{font-style:normal;font-weight:800;font-size:1.4rem}
+.team.lead em{color:var(--win)}
+.next{margin:12px 0 0;font-size:.9rem;color:var(--muted)}
+.final{border:2px solid var(--gold);border-radius:14px;padding:18px;text-align:center;background:var(--card)}
+.final strong{display:block;font-size:1.4rem;font-weight:800}
+.final span{color:var(--muted);font-size:.9rem}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;min-width:520px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:.95rem}
+th{color:var(--muted);font-weight:600}
+td.agg{font-weight:800}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{margin:0 0 6px;font-size:1rem}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.chartbox{position:relative;height:260px}
+footer{margin-top:36px;color:var(--muted);font-size:.85rem}
+@media (max-width:760px){.bracket{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<h1>Libertadores 2026</h1>
+<p class="sub">Semifinais em andamento · atualizado em 20/10/2026, antes dos jogos de volta</p>
+
+<div class="kpis">
+  <div class="kpi"><b>4</b><small>semifinalistas</small></div>
+  <div class="kpi"><b>3 de 4</b><small>são brasileiros</small></div>
+  <div class="kpi"><b>28/11</b><small>final em Montevidéu</small></div>
+  <div class="kpi"><b>US$ 25 mi</b><small>prêmio pelo título da final</small></div>
+</div>
+
+<h2>Chaveamento</h2>
+<div class="bracket">
+  <div class="tie">
+    <h3>Semifinal 1 · volta quarta, 21/10, 21h30 (Nubank Parque)</h3>
+    <div class="team lead">Palmeiras <em>2</em></div>
+    <div class="team">Fluminense <em>1</em></div>
+    <p class="next">Ida no Maracanã: gols de Flaco López e Marlon Freitas; Wesley Natã descontou.</p>
+  </div>
+  <div class="tie">
+    <h3>Semifinal 2 · volta quinta, 22/10, 21h30 (Maracanã)</h3>
+    <div class="team">Estudiantes <em>0</em></div>
+    <div class="team">Flamengo <em>0</em></div>
+    <p class="next">Ida em La Plata terminou 0 a 0. O Flamengo não chutou no gol.</p>
+  </div>
+  <div class="final">
+    <span>Final em jogo único</span>
+    <strong>Estádio Centenário</strong>
+    <span>Montevidéu · sábado, 28/11</span>
+  </div>
+</div>
+
+<h2>O que cada time precisa na volta</h2>
+<div class="two">
+  <div class="card"><h3>Palmeiras</h3><p>Joga em casa e avança com empate ou vitória. Só uma derrota por dois gols ou mais tira a vaga no tempo normal.</p></div>
+  <div class="card"><h3>Fluminense</h3><p>Precisa vencer por dois gols de diferença para fechar a série no tempo normal. Vitória por um gol leva aos pênaltis.</p></div>
+  <div class="card"><h3>Flamengo</h3><p>Decide em casa. Com a série zerada, vitória classifica e empate leva aos pênaltis. O time segue invicto na competição (7 vitórias e 4 empates).</p></div>
+  <div class="card"><h3>Estudiantes</h3><p>Foi melhor na ida, com xG de 1,09 a 0,16 segundo o Flashscore. Joga fora de casa: vitória classifica e empate leva aos pênaltis.</p></div>
+</div>
+
+<h2>Como chegaram: quartas de final</h2>
+<div class="scroll">
+<table>
+  <thead><tr><th>Confronto</th><th>Ida</th><th>Volta</th><th>Agregado</th></tr></thead>
+  <tbody>
+    <tr><td>Fluminense x Platense</td><td>2 x 0</td><td>1 x 2</td><td class="agg">3 x 2</td></tr>
+    <tr><td>Palmeiras x LDU</td><td>1 x 0</td><td>placar da volta não confirmado</td><td class="agg">Palmeiras avançou</td></tr>
+    <tr><td>Corinthians x Estudiantes</td><td>1 x 1</td><td>0 x 1</td><td class="agg">1 x 2</td></tr>
+    <tr><td>Independiente del Valle x Flamengo</td><td>0 x 2</td><td>1 x 1</td><td class="agg">1 x 3</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Gols no agregado das quartas</h2>
+<div class="card">
+  <div class="chartbox"><canvas id="grafico" role="img" aria-label="Gols marcados e sofridos nas quartas de final"></canvas></div>
+  <p style="margin-top:8px">Só entram as três séries com placar completo confirmado.</p>
+</div>
+
+<footer>
+  Fontes: reportagens da imprensa esportiva (Gazeta Esportiva, O Povo, Tribuna de Jundiaí, Flashscore, Diário do Grande ABC). Os veículos divergem em alguns detalhes, como o minuto dos gols, então a página não os traz. Confira o calendário oficial na CONMEBOL.
+</footer>
+</main>
+
+<script>
+// Dados: gols marcados e sofridos por quem avançou, no agregado das quartas
+var times = ["Fluminense","Estudiantes","Flamengo"];
+var pro = [3,2,3];
+var contra = [2,1,1];
+function cor(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+try {
+  Chart.defaults.font.family = "Archivo, system-ui, sans-serif";
+  Chart.defaults.color = cor("--muted");
+  new Chart(document.getElementById("grafico"), {
+    type: "bar",
+    data: {
+      labels: times,
+      datasets: [
+        { label: "Gols marcados", data: pro, backgroundColor: cor("--chart1") },
+        { label: "Gols sofridos", data: contra, backgroundColor: cor("--chart2") }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+    }
+  });
+} catch (e) { console.error(e); }
+</script>
+</body>
+</html>
